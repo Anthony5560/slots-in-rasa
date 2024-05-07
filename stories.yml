@@ -1,0 +1,43 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: story my phone number
+  steps:
+  - intent: greet
+  - action: utter_ask_phone
+  - intent: phone
+    entities:
+    - number: 878750932
+  - slot_was_set:
+    - phonenumber: 432198764
+  - action: utter_thanks
+  - intent: repeat_phone
+  - action: action_say_phone
